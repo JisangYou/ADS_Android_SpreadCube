@@ -64,40 +64,40 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         ObjectAnimator btn1Y = ObjectAnimator.ofFloat(
 
-                btn1, "translationY", 150
+                btn1, "translationY", 200
         );
 
         ObjectAnimator btn1X = ObjectAnimator.ofFloat(
 
-                btn1, "translationX", 150
+                btn1, "translationX", 200
         );
 
         ObjectAnimator btn2Y = ObjectAnimator.ofFloat(
 
-                btn2, "translationY", 150
+                btn2, "translationY", 200
         );
 
         ObjectAnimator btn2X = ObjectAnimator.ofFloat(
 
-                btn2, "translationX", -150
+                btn2, "translationX", -200
         );
         ObjectAnimator btn3Y = ObjectAnimator.ofFloat(
 
-                btn3, "translationY", -150
+                btn3, "translationY", -200
         );
 
         ObjectAnimator btn3X = ObjectAnimator.ofFloat(
 
-                btn3, "translationX", 150
+                btn3, "translationX", 200
         );
         ObjectAnimator btn4Y = ObjectAnimator.ofFloat(
 
-                btn4, "translationY", -150
+                btn4, "translationY", -200
         );
 
         ObjectAnimator btn4X = ObjectAnimator.ofFloat(
 
-                btn4, "translationX", -150
+                btn4, "translationX", -200
         );
 
         AnimatorSet aniSet = new AnimatorSet();

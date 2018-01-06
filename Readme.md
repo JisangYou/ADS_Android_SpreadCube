@@ -1,14 +1,49 @@
-# 애니메이션 실습
-## 설명
-- 한곳에 모여있는 네개의 정사각형
-- 버튼을 누르면, 퍼지면서 큰 정사각형을 만듦
-- 퍼질 때 회전을 함.
-- 다시 버튼을 누르면 같은 방법으로 다시 하나의 정사각형으로 모여지는 구조
-- 추후 gif로 올릴 필요있음
+# ADS04 Android
 
-### 소스코드
+## 수업 내용
+
+- spreadCube 예제 및 실습
+
+## Code Review
+
 ```Java
-public void onClick(View view) {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+
+    Button btn1, btn2, btn3, btn4, btn_spread;
+    static boolean re = false;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        init();
+        onclickListener();
+    }
+
+
+    public void init() {
+
+        btn1 = (Button) findViewById(R.id.btn1);
+        btn2 = (Button) findViewById(R.id.btn2);
+        btn3 = (Button) findViewById(R.id.btn3);
+        btn4 = (Button) findViewById(R.id.btn4);
+        btn_spread = (Button) findViewById(R.id.btn_spread);
+
+    }
+
+    public void onclickListener() {
+
+        btn1.setOnClickListener(this);
+        btn2.setOnClickListener(this);
+        btn3.setOnClickListener(this);
+        btn4.setOnClickListener(this);
+        btn_spread.setOnClickListener(this);
+
+    }
+
+    @Override
+    public void onClick(View view) {
         if (re == false) {
             move();
             rotate();
@@ -27,40 +62,40 @@ public void onClick(View view) {
 
         ObjectAnimator btn1Y = ObjectAnimator.ofFloat(
 
-                btn1, "translationY", 150
+                btn1, "translationY", 200
         );
 
         ObjectAnimator btn1X = ObjectAnimator.ofFloat(
 
-                btn1, "translationX", 150
+                btn1, "translationX", 200
         );
 
         ObjectAnimator btn2Y = ObjectAnimator.ofFloat(
 
-                btn2, "translationY", 150
+                btn2, "translationY", 200
         );
 
         ObjectAnimator btn2X = ObjectAnimator.ofFloat(
 
-                btn2, "translationX", -150
+                btn2, "translationX", -200
         );
         ObjectAnimator btn3Y = ObjectAnimator.ofFloat(
 
-                btn3, "translationY", -150
+                btn3, "translationY", -200
         );
 
         ObjectAnimator btn3X = ObjectAnimator.ofFloat(
 
-                btn3, "translationX", 150
+                btn3, "translationX", 200
         );
         ObjectAnimator btn4Y = ObjectAnimator.ofFloat(
 
-                btn4, "translationY", -150
+                btn4, "translationY", -200
         );
 
         ObjectAnimator btn4X = ObjectAnimator.ofFloat(
 
-                btn4, "translationX", -150
+                btn4, "translationX", -200
         );
 
         AnimatorSet aniSet = new AnimatorSet();
@@ -198,9 +233,32 @@ public void onClick(View view) {
         btn4s.start();
 
     }
+
+
+}
 ```
 
 - 버튼이 하나인 관계로 if/else if문을 사용해 퍼지고, 모이는 것을 구현함
-- ObjectAnimator로 각 버튼들을 지정, translation함수를 이용해 '움직임'을 지정, 상대적 위치값 150지정(정사각형의 한변 길이만큼)
-- ObjectAnimator로 각 버튼들을 지정, rotate함수를 이용해 '회전'을 지정, translation과 달리, 하나의 버튼만 고려!
 - 회전 수를 크게 하면 할 수록 빨라지고, 음수로 지정해주면 시계반대방향으로 돔.
+
+## 보충설명
+
+- 플래그 값을 지정해주어서, 산개가 되는것과 응집이 되는 것을 컨트롤함.
+
+#### 참고자료: https://developer.android.com/reference/android/animation/package-summary.html
+#### 참고자료: https://developer.android.com/guide/topics/resources/animation-resource.html
+
+## TODO
+
+- 반복되고 비효율적인 로직 리팩토링
+
+## Retrospect
+
+- 코드가 비효율적이라는 생각이 듬. 큰 내용이 없음에도 불구하고 코드가 굉장히 길다. 리팩토링이 필요함.
+
+## Output
+
+![animation_spreadcube](https://user-images.githubusercontent.com/31605792/34641814-1566ae1a-f34d-11e7-8379-f47ed7046224.gif)
+
+
+
